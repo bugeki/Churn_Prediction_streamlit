@@ -8,37 +8,44 @@ st.text('Left or Stay?')
 
 #image
 img = Image.open("churns.jpg")
-st.image(img, width=500)
+st.image(img, width=600)
 
 #sidebar hearder
-st.sidebar.header('Left or Stay Predictor')
+st.sidebar.header('Employee Churn Predictor')
 
 # Departments
 Departments=st.sidebar.selectbox("Departments ", ['sales', 'technical', 'support', 'IT', 'product_mng', 'marketing', 'RandD', 'accounting', 'hr', 'management'])
 
 # Salary
-salary=st.sidebar.selectbox("salary", ["low", "medium", "high"])
+salary=st.sidebar.selectbox("Salary", ["low", "medium", "high"])
 
 # Satisfaction Level
-satisfaction_level=st.sidebar.number_input("satisfaction_level", min_value=0.00, max_value=1.00, step=0.01)
+satisfaction_level=st.sidebar.number_input("Satisfaction Level Score", min_value=0.00, max_value=1.00, step=0.01)
 
 #Last Evaluation
-last_evaluation = st.sidebar.number_input("last_evaluation:",min_value=0.00, max_value=1.00, step=0.01)
+last_evaluation = st.sidebar.number_input("Last Evaluation Score:",min_value=0.00, max_value=1.00, step=0.01)
 
 #average_monthly_hours
-average_montly_hours=st.sidebar.number_input("average_monthly_hours:",min_value=0, max_value=500, step=1)
+average_montly_hours=st.sidebar.number_input("Average Monthly Working Hours:",min_value=0, max_value=500, step=1)
 
 #number_project
-number_project=st.sidebar.number_input("number_project:",min_value=0, max_value=25, step=1)
+number_project=st.sidebar.number_input("Number of Projects Worked On:",min_value=0, max_value=25, step=1)
 
 #time_spend_company
-time_spend_company=st.sidebar.number_input("time_spend_company:",min_value=0, max_value=25, step=1)
+time_spend_company=st.sidebar.number_input("Time Spend in the Company:",min_value=0, max_value=25, step=1)
 
-#Work_accident
-work_accident = st.sidebar.number_input("work accident:", min_value=0, max_value=1, step=1)
-
-#promotion_last_5years
-promotion_last_5years = st.sidebar.number_input("promotion_last_5years:", min_value=0, max_value=1, step=1)
+radio1 = st.sidebar.radio("Received a Promotion in the Last 5 Years?:", ('Yes', 'No'))
+if radio1 == 'Yes':
+    promotion_last_5years = 1
+else:
+    promotion_last_5years = 0
+    
+radio2 = st.sidebar.radio("Have a work accident?:", ('Yes', 'No'))
+if radio2 == 'Yes':
+    work_accident = 1
+else:
+    work_accident = 0
+      
 
 import pickle
 filename = 'gradient_boosting_model'
